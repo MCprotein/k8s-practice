@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-3
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: sys-ser8
+  containers:
+    - name: container
+      image: tmkube/init

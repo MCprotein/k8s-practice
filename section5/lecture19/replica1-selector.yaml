@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replica1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: web
+      ver: v1
+  template:
+    metadata:
+      name: pod1
+      labels:
+        type: web
+        ver: v1
+    spec:
+      containers:
+        - name: container
+          image: tmkube/app:v1
+      terminationGracePeriodSeconds: 0

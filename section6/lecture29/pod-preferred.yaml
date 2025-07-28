@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-required
+spec:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 1
+          preference:
+            matchExpressions:
+              - key: ch
+                operator: Exists
+  containers:
+    - name: container
+      image: tmkube/app
+      terminationGracePeriodSeconds: 0

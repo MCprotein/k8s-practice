@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: endpoint2
+spec:
+  # selector 제거 - 수동 Endpoints 사용 시 필요
+  ports:
+    - port: 8080

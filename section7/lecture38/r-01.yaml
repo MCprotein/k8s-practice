@@ -1,0 +1,16 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: r-01
+  namespace: nm-01
+rules:
+  # apiVersion에서 / 왼쪽 부분이 apiGroups
+  # 빈 문자열 ""은 기본 그룹을 의미
+  # Service같은건 core 그룹이라서 빈 문자열로 표현
+  - apiGroups: [""]
+    # verbs는 허용할 동작
+    # get, list, watch, create, update, delete, patch, ...
+    verbs: ["get", "list"]
+    # resources는 허용할 리소스
+    # pods, services, deployments, ...
+    resources: ["pods"]

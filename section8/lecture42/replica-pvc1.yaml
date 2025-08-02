@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: replica-pv1
+spec:
+  capacity:
+    storage: 1G
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /tmp/data
+  storageClassName: fast
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: replica-pvc1
+spec:
+  resources:
+    requests:
+      storage: 1G
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: fast

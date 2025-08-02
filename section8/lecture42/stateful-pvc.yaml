@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: stateful-pvc
+spec:
+  selector:
+    matchLabels:
+      type: db2
+  serviceName: stateful-headless
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        type: db2
+    spec:
+      containers:
+        - name: container
+          image: kubetm/app
+          volumeMounts:
+            - name: mymyvolume
+              mountPath: /applog
+  volumeClaimTemplates:
+    - metadata:
+        name: mymyvolume
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+        # microk8s에서 프로비저닝되는 스토리지클래스가 없어서
+        # microk8s enable storage 명령어로 활성화하고
+        # kubectl get storageclass 명령어로 name 확인
+        storageClassName: microk8s-hostpath
